@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>くまさん家計簿</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="manifest" href="./manifest.webmanifest">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="くまさん家計簿">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f6e5ca">
+
+<style>
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  background:#fff8ee;
+  color:#6b3d24;
+}
+body{
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  box-sizing:border-box;
+}
+.card{
+  width:min(100%,360px);
+  text-align:center;
+  background:#fffdf8;
+  border:1px solid #ead0af;
+  border-radius:28px;
+  padding:28px 22px;
+  box-shadow:0 10px 28px rgba(95,55,29,.12);
+}
+.icon{
+  width:150px;
+  height:150px;
+  border-radius:32px;
+  box-shadow:0 8px 20px rgba(95,55,29,.14);
+}
+h1{
+  margin:18px 0 8px;
+  font-size:26px;
+  font-weight:800;
+}
+p{
+  margin:0 0 18px;
+  font-size:14px;
+  color:#8b6b57;
+}
+a{
+  display:block;
+  padding:15px;
+  border-radius:18px;
+  background:#9e5c36;
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+}
+</style>
+
+<script>
+const APP_URL = 'https://script.google.com/macros/s/AKfycbxqA6qYl-dWPsmeNe3NyWJaHvVkLOrIZEl38TJNL0RaqFi0U78_QxIF7YkSFtANmR0a/exec';
+
+window.addEventListener("load", () => {
+  // Short delay lets iOS finish reading page metadata/icon before redirecting.
+  setTimeout(() => {
+    window.location.replace(APP_URL);
+  }, 700);
+});
+</script>
+</head>
+<body>
+  <main class="card">
+    <img class="icon" src="./icon-512.png" alt="くまさん家計簿">
+    <h1>くまさん家計簿</h1>
+    <p>家計簿を開いています…</p>
+    <a href="https://script.google.com/macros/s/AKfycbxqA6qYl-dWPsmeNe3NyWJaHvVkLOrIZEl38TJNL0RaqFi0U78_QxIF7YkSFtANmR0a/exec">開かない場合はこちら</a>
+  </main>
+</body>
+</html>
