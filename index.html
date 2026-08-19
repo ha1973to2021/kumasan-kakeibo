@@ -54,6 +54,7 @@ p{
   margin:0 0 18px;
   font-size:14px;
   color:#8b6b57;
+  line-height:1.6;
 }
 a{
   display:block;
@@ -64,16 +65,27 @@ a{
   text-decoration:none;
   font-weight:800;
 }
+.note{
+  margin-top:14px;
+  font-size:12px;
+  color:#9a7b66;
+}
 </style>
 
 <script>
 const APP_URL = 'https://script.google.com/macros/s/AKfycbxqA6qYl-dWPsmeNe3NyWJaHvVkLOrIZEl38TJNL0RaqFi0U78_QxIF7YkSFtANmR0a/exec';
 
 window.addEventListener("load", () => {
-  // Short delay lets iOS finish reading page metadata/icon before redirecting.
-  setTimeout(() => {
-    window.location.replace(APP_URL);
-  }, 700);
+  const isStandalone =
+    window.navigator.standalone === true ||
+    window.matchMedia('(display-mode: standalone)').matches;
+
+  // Only auto-open the household budget app when launched from the home-screen icon.
+  if (isStandalone) {
+    setTimeout(() => {
+      window.location.replace(APP_URL);
+    }, 250);
+  }
 });
 </script>
 </head>
@@ -81,8 +93,15 @@ window.addEventListener("load", () => {
   <main class="card">
     <img class="icon" src="./icon-512.png" alt="くまさん家計簿">
     <h1>くまさん家計簿</h1>
-    <p>家計簿を開いています…</p>
-    <a href="https://script.google.com/macros/s/AKfycbxqA6qYl-dWPsmeNe3NyWJaHvVkLOrIZEl38TJNL0RaqFi0U78_QxIF7YkSFtANmR0a/exec">開かない場合はこちら</a>
+    <p>
+      このページをSafariで開いたまま、<br>
+      「共有」→「ホーム画面に追加」を選んでください。
+    </p>
+    <a href="https://script.google.com/macros/s/AKfycbxqA6qYl-dWPsmeNe3NyWJaHvVkLOrIZEl38TJNL0RaqFi0U78_QxIF7YkSFtANmR0a/exec">家計簿を今すぐ開く</a>
+    <div class="note">
+      ホーム画面のくまさんアイコンから起動すると、<br>
+      自動で家計簿が開きます。
+    </div>
   </main>
 </body>
 </html>
