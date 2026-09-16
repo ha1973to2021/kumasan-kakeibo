@@ -10,29 +10,52 @@
   <meta name="mobile-web-app-capable" content="yes">
   <title>ひねくれ家計簿</title>
 
-  <link rel="manifest" href="./manifest.webmanifest?v=3">
-  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png?v=3">
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=3">
+  <link rel="manifest" href="./manifest.webmanifest?v=4">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png?v=4">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=4">
 
   <style>
-    :root{--bg:#fff4d8;--ink:#4d392d}
+    :root{--bg:#fff4d8;--card:#fffdf8;--ink:#4e362a;--sub:#806653;--line:#ead0af}
     *{box-sizing:border-box}
-    html,body{width:100%;height:100%;margin:0;background:var(--bg)}
-    body{display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;color:var(--ink)}
-    .loading{text-align:center;padding:24px;font-weight:800}
-    .loading small{display:block;margin-top:8px;font-size:12px;font-weight:700;opacity:.7}
+    html,body{margin:0;min-height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Maru Gothic ProN","Yu Gothic","Meiryo",sans-serif;color:var(--ink)}
+    body{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{width:min(100%,360px);text-align:center;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:28px 22px;box-shadow:0 10px 28px rgba(95,55,29,.12)}
+    .icon{width:150px;height:150px;border-radius:32px;box-shadow:0 8px 20px rgba(95,55,29,.14)}
+    h1{margin:18px 0 8px;font-size:26px;font-weight:900}
+    p{margin:0 0 18px;font-size:14px;color:var(--sub);line-height:1.7}
+    a{display:block;padding:15px;border-radius:18px;background:#9e5c36;color:#fff;text-decoration:none;font-weight:900}
+    .note{margin-top:14px;font-size:12px;color:#9a7b66;line-height:1.6}
   </style>
 
   <script>
-    const APP_URL = 'https://script.google.com/macros/s/AKfycbxqA6qYl-dWPsmeNe3NyWJaHvVkLOrIZEl38TJNL0RaqFi0U78_QxIF7YkSFtANmR0a/exec';
-    // Safari/iOSではGoogle Apps Scriptをiframe内で開くと
-    // Google認証・Cookie制限で401になることがあるため、トップレベルで直接開く。
-    window.location.replace(APP_URL);
+    const APP_URL='https://script.google.com/macros/s/AKfycbxqA6qYl-dWPsmeNe3NyWJaHvVkLOrIZEl38TJNL0RaqFi0U78_QxIF7YkSFtANmR0a/exec';
+
+    window.addEventListener('load',()=>{
+      const isStandalone =
+        window.navigator.standalone === true ||
+        window.matchMedia('(display-mode: standalone)').matches;
+
+      // Safari通常表示時はGitHub Pages上に残る。
+      // これにより「ホーム画面に追加」の際、GitHub側のapple-touch-iconが確実に使われる。
+      // ホーム画面アイコンから起動した時だけGASへ即時遷移する。
+      if(isStandalone){
+        window.location.replace(APP_URL);
+      }
+    });
   </script>
 </head>
 <body>
-  <div class="loading">ひねくれ家計簿を開いています…
-    <small>自動で開かない場合はページを再読み込みしてください。</small>
-  </div>
+  <main class="card">
+    <img class="icon" src="./icon-180.png?v=4" alt="ひねくれ家計簿">
+    <h1>ひねくれ家計簿</h1>
+    <p>
+      Safariの「共有」→「ホーム画面に追加」から登録してください。<br>
+      登録後は、アイコンを押すと家計簿が直接開きます。
+    </p>
+    <a href="https://script.google.com/macros/s/AKfycbxqA6qYl-dWPsmeNe3NyWJaHvVkLOrIZEl38TJNL0RaqFi0U78_QxIF7YkSFtANmR0a/exec">家計簿を今すぐ開く</a>
+    <div class="note">
+      ※ホーム画面追加時のアイコンは、この画面のテディ画像を使用します。
+    </div>
+  </main>
 </body>
 </html>
